@@ -7,7 +7,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="description" content="Mimo Cards — pequenos gestos, grandes lembranças. Versão 7.2.">
+<meta name="description" content="Mimo Cards — pequenos gestos, grandes lembranças. Versão 7.3.">
 <title>Mimo Cards</title>
 <style>
 :root{--bg:#f7f6f2;--ink:#28312d;--muted:#737b76;--line:#e7e5dd;--green:#477a67;--panel:#fffefa}
@@ -58,7 +58,7 @@
 .preview.scrapbook .photo-frame{left:15%;top:10%;width:60%;height:31%;transform:rotate(-4deg)}
 .preview .photo-frame img{width:100%;height:100%;object-fit:cover}
 .preview.mimo .art-inner,.preview.minimalista .art-inner,.preview.scrapbook .art-inner{padding:0 8px;gap:12px}
-.preview.mimo .art-inner{padding-top:61%!important}.preview.minimalista .art-inner{padding-top:61%!important}.preview.scrapbook .art-inner{padding-top:61%!important}
+.preview.mimo .art-inner{padding-top:0!important}.preview.minimalista .art-inner{padding-top:0!important}.preview.scrapbook .art-inner{padding-top:0!important}
 .preview.minimalista .card-title{font-weight:500;font-size:clamp(21px,2.8vw,31px);letter-spacing:.1px}
 .preview.mimo .card-title,.preview.scrapbook .card-title{font-weight:600}
 .preview .brand-credit{position:absolute;bottom:22px;left:0;right:0;z-index:3;font-size:7px;letter-spacing:.4px;opacity:.75;text-align:center}
@@ -72,21 +72,26 @@
 .preview.mimo,.preview.minimalista,.preview.scrapbook{background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important;color:#654b37}
 .preview.mimo:before,.preview.mimo:after,.preview.minimalista:before,.preview.minimalista:after,.preview.scrapbook:before,.preview.scrapbook:after{display:none!important}
 .preview .paper-speck{display:none!important}
-.preview .art-inner{position:absolute!important;left:18%!important;right:18%!important;width:auto!important;display:flex!important;flex-direction:column!important;align-items:center!important;gap:0!important;padding:0 2px!important;max-height:52%;overflow:hidden;z-index:5!important}
-.preview .card-title{font-size:clamp(11px,2.1vw,21px)!important;line-height:1.12!important;font-weight:600!important;letter-spacing:0!important;white-space:pre-line!important;max-width:100%;overflow-wrap:anywhere}
+.preview .art-inner{position:absolute!important;left:23%!important;right:23%!important;width:auto!important;display:flex!important;flex-direction:column!important;align-items:center!important;gap:0!important;padding:0 2px!important;max-height:52%;overflow:visible;z-index:5!important}
+.preview .card-title{font-size:clamp(9px,1.8vw,18px)!important;line-height:1.08!important;font-weight:600!important;letter-spacing:0!important;white-space:pre-line!important;max-width:100%;overflow-wrap:anywhere}
 .preview .card-sub{font-size:clamp(6px,1vw,10px)!important;letter-spacing:.8px!important;line-height:1.15!important}
 .preview .brand-credit{display:none!important}
 .preview .custom-photo{position:absolute;z-index:4;object-fit:cover;display:block;border-radius:2px;pointer-events:none}
-.preview .card-recipient{font-family:Georgia,serif;font-size:clamp(9px,1.25vw,13px);font-weight:500;line-height:1.15;margin-bottom:18px}.preview .card-title{margin:0 0 20px;max-width:100%;overflow-wrap:break-word;word-break:normal}.preview .card-sub.signature{font-family:Georgia,serif;font-style:italic;text-transform:none;letter-spacing:0;font-size:clamp(9px,1.2vw,13px);margin-top:6px}.preview .card-sub.card-date{font-family:Georgia,serif;text-transform:none;letter-spacing:0;font-size:clamp(8px,1.1vw,12px);margin-top:4px}
-@media(max-width:600px){.preview .art-inner{gap:0!important}.preview .card-title{font-size:clamp(10px,2.9vw,16px)!important;line-height:1.12!important}.preview .card-sub{font-size:7px!important}.preview .card-recipient{margin-bottom:8px}}
+.preview .card-recipient{font-family:Georgia,serif;font-size:clamp(8px,1.1vw,12px);font-weight:500;line-height:1.15;margin-bottom:10px}.preview .card-title{margin:0 0 10px;max-width:100%;overflow-wrap:break-word;word-break:normal}.preview .card-sub.signature{font-family:Georgia,serif;font-style:italic;text-transform:none;letter-spacing:0;font-size:clamp(9px,1.2vw,13px);margin-top:6px}.preview .card-sub.card-date{font-family:Georgia,serif;text-transform:none;letter-spacing:0;font-size:clamp(8px,1.1vw,12px);margin-top:4px}
+@media(max-width:600px){.preview .art-inner{gap:0!important}.preview .card-title{font-size:clamp(8px,2.4vw,14px)!important;line-height:1.08!important}.preview .card-sub{font-size:7px!important}.preview .card-recipient{margin-bottom:8px}}
 
+
+/* Versão 7.3: ajuste manual da foto, prévia ampliada e limite de texto visível. */
+.photo-adjust{border:1px solid var(--line);border-radius:16px;background:#fff;padding:14px;margin:12px 0;display:none}.photo-adjust.visible{display:block}.photo-adjust h3{font-size:15px;margin:0 0 10px}.adjust-row{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;margin:9px 0}.adjust-row label{font-size:13px;font-weight:650}.adjust-row input[type=range]{grid-column:1/-1;width:100%;accent-color:var(--green)}.adjust-buttons{display:flex;gap:8px;flex-wrap:wrap}.char-counter{font-size:12px;color:var(--muted);text-align:right;margin-top:5px}.char-counter.over{color:#b42318;font-weight:750}.preview-modal{display:none;position:fixed;inset:0;background:#18201de8;z-index:60;padding:18px;overflow:auto;align-items:center;justify-content:center}.preview-modal.open{display:flex}.preview-modal-inner{width:min(100%,520px);display:flex;flex-direction:column;align-items:center;gap:12px}.preview-modal img{display:block;max-width:100%;max-height:78vh;object-fit:contain;border-radius:8px;box-shadow:0 12px 40px #0005}.preview-modal .preview-modal-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}.preview-modal .secondary{background:#fff}.preview-modal .close-preview{background:#fff;border:0;border-radius:50%;width:42px;height:42px;font-size:24px;align-self:flex-end}
+.preview .photo-window{position:absolute;z-index:4;overflow:hidden;pointer-events:none}.preview .photo-window img{width:100%;height:100%;object-fit:cover;display:block;transform-origin:center center}
+@media(max-width:600px){.adjust-row label{font-size:12px}.photo-adjust{padding:12px}.preview-modal{padding:10px}}
 </style>
 </head>
 <body>
 <header>
 <img class="brand-icon" src="apple-touch-icon.png" alt="Mimo Cards" onerror="this.style.display='none'">
 <div class="brand"><h1>Mimo Cards</h1><div class="tagline">Pequenos gestos, grandes lembranças</div></div>
-<span class="pill">Gratuito · sem cadastro</span><button class="version-badge" id="refresh-version" type="button" aria-label="Atualizar Mimo Cards" title="Toque para buscar a versão mais recente"><span>Versão 7.2<span class="version-help">Toque para atualizar</span></span><span class="refresh-symbol" aria-hidden="true">↻</span></button>
+<span class="pill">Gratuito · sem cadastro</span><button class="version-badge" id="refresh-version" type="button" aria-label="Atualizar Mimo Cards" title="Toque para buscar a versão mais recente"><span>Versão 7.3<span class="version-help">Toque para atualizar</span></span><span class="refresh-symbol" aria-hidden="true">↻</span></button>
 </header>
 <nav class="nav" aria-label="Navegação">
 <button class="active" data-page="home">Início</button><button data-page="cards">Cartões</button><button data-page="birthdays">Aniversários</button>
@@ -117,16 +122,17 @@
 <div class="dialog"><div class="dialog-head"><h2 id="editor-title">Personalizar cartão</h2><button class="close" id="close-editor" aria-label="Fechar">×</button></div>
 <div class="editor-grid"><div>
 <div class="field"><label for="edit-recipient">Nome de quem vai receber (opcional)</label><input id="edit-recipient" placeholder="Ex.: Para Ana"></div>
-<div class="field"><label for="edit-message">Mensagem principal</label><textarea id="edit-message" placeholder="Escreva sua mensagem..."></textarea></div>
+<div class="field"><label for="edit-message">Mensagem principal</label><textarea id="edit-message" placeholder="Escreva sua mensagem..." maxlength="300"></textarea><div id="message-counter" class="char-counter">0/300 caracteres (sem foto)</div><p class="hint" id="message-limit-hint">Sem foto: até 300 caracteres. Com foto: até 180 caracteres.</p></div>
 <div class="field"><label for="edit-signature">Assinatura (opcional)</label><input id="edit-signature" placeholder="Seu nome"></div>
 <div class="field"><label for="edit-date">Data (opcional)</label><input id="edit-date" type="date"></div>
 <div class="field"><label for="edit-photo">Adicionar uma foto (opcional)</label><input id="edit-photo" type="file" accept="image/*"><button class="secondary" id="remove-photo" type="button">Continuar sem foto / remover foto</button></div>
+<div id="photo-adjust" class="photo-adjust"><h3>Ajustar foto</h3><p class="hint">Use os controles para centralizar a pessoa ou objeto na moldura. O ajuste aparece também no JPEG final.</p><div class="adjust-row"><label for="photo-zoom">Aumentar / diminuir</label><span id="photo-zoom-value">100%</span><input id="photo-zoom" type="range" min="100" max="220" value="100" step="5"></div><div class="adjust-row"><label for="photo-x">Mover para esquerda / direita</label><span id="photo-x-value">0</span><input id="photo-x" type="range" min="-100" max="100" value="0" step="5"></div><div class="adjust-row"><label for="photo-y">Mover para cima / baixo</label><span id="photo-y-value">0</span><input id="photo-y" type="range" min="-100" max="100" value="0" step="5"></div><div class="adjust-buttons"><button class="secondary" id="photo-rotate" type="button">↻ Girar 90°</button><button class="secondary" id="photo-reset" type="button">Reiniciar ajuste</button></div></div>
 <p class="hint" id="photo-treatment-field">A foto é opcional. Cada modelo tem uma composição própria; se não adicionar uma imagem, o cartão usa a decoração alternativa sem foto.</p>
 <p class="hint">Dica: separe as frases com ponto final. O cartão organiza as frases em linhas para facilitar a leitura. A assinatura “Made by Mimo Cards” aparece discretamente no rodapé.</p>
-<div class="actions"><button class="primary" id="share-card">Compartilhar cartão</button><button class="secondary" id="download-card">Baixar JPEG</button></div>
+<div class="actions"><button class="secondary" id="quick-preview">Visualizar cartão</button><button class="primary" id="share-card">Compartilhar cartão</button><button class="secondary" id="download-card">Baixar JPEG</button></div>
 </div><div class="editor-preview"><div id="live-preview" class="preview sage"></div></div></div>
 </div></div>
-<div class="toast" id="toast"></div>
+<div class="preview-modal" id="preview-modal" role="dialog" aria-modal="true" aria-label="Visualização do cartão"><div class="preview-modal-inner"><button class="close-preview" id="close-preview" aria-label="Fechar visualização">×</button><img id="quick-preview-image" alt="Prévia do cartão personalizado"><div class="preview-modal-actions"><button class="secondary" id="preview-back">Voltar e editar</button><button class="primary" id="preview-share">Compartilhar cartão</button></div></div></div><div class="toast" id="toast"></div>
 <script>
 (()=>{
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
@@ -151,6 +157,8 @@ const cards=[
 ];
 let currentCard=null, selectedPhoto=null, toastTimer;
 let photoTreatment='tape';
+let photoAdjust={zoom:1,x:0,y:0,rotation:0};
+const MESSAGE_LIMIT_NO_PHOTO=300, MESSAGE_LIMIT_PHOTO=180;
 const photoStyles=['clip','tape','magnet','tape','magnet','clip','tape','magnet','clip','tape','magnet','clip','tape','magnet','clip','tape'];
 cards.forEach((c,i)=>c.photoTreatment=photoStyles[i%photoStyles.length]);
 function notify(msg){const t=$('#toast');t.textContent=msg;t.style.display='block';clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.style.display='none',2600)}
@@ -172,13 +180,29 @@ function renderGrid(el,list){el.innerHTML=list.map(c=>`<div class="card-item">${
 function renderOccasions(){ $('#home-occasions').innerHTML=occasions.map(o=>`<button class="occasion" data-occasion="${o.id}"><span class="emoji">${o.emoji}</span><strong>${o.name}</strong><small>${o.sub}</small></button>`).join('');$('#occasion-filter').insertAdjacentHTML('beforeend',occasions.map(o=>`<option value="${o.id}">${o.name}</option>`).join(''));const styles=[...new Set(cards.map(c=>c.style))].sort();$('#style-filter').insertAdjacentHTML('beforeend',styles.map(s=>`<option>${s}</option>`).join(''));$$('[data-occasion]').forEach(b=>b.addEventListener('click',()=>{nav('cards');$('#occasion-filter').value=b.dataset.occasion;renderCards()}))}
 function renderCards(){const q=$('#card-search').value.trim().toLocaleLowerCase('pt-BR'),o=$('#occasion-filter').value,st=$('#style-filter').value;const list=cards.filter(c=>(o==='all'||c.occasion===o)&&(st==='all'||c.style===st)&&(!q||[c.title,c.message,c.style,occasionName(c.occasion)].join(' ').toLocaleLowerCase('pt-BR').includes(q)));renderGrid($('#all-cards-grid'),list);$('#no-cards').hidden=list.length>0}
 $('#card-search').addEventListener('input',renderCards);$('#occasion-filter').addEventListener('change',renderCards);$('#style-filter').addEventListener('change',renderCards);$('#hero-create').addEventListener('click',()=>nav('cards'));
-function openEditor(id){currentCard=cards.find(c=>c.id===id);if(!currentCard)return;selectedPhoto=null;photoTreatment=currentCard.photoTreatment||'tape';$('#editor-title').textContent=currentCard.title;$('#edit-message').value=currentCard.message;$('#edit-signature').value='';$('#edit-recipient').value='';$('#edit-date').value='';$('#edit-photo').value='';updatePreview();$('#editor-modal').classList.add('open');document.body.style.overflow='hidden'}
+function openEditor(id){currentCard=cards.find(c=>c.id===id);if(!currentCard)return;selectedPhoto=null;photoAdjust={zoom:1,x:0,y:0,rotation:0};photoTreatment=currentCard.photoTreatment||'tape';$('#editor-title').textContent=currentCard.title;$('#edit-message').value=currentCard.message;$('#edit-signature').value='';$('#edit-recipient').value='';$('#edit-date').value='';$('#edit-photo').value='';syncPhotoControls();updateMessageCounter();updatePreview();$('#editor-modal').classList.add('open');document.body.style.overflow='hidden'}
 function closeEditor(){$('#editor-modal').classList.remove('open');document.body.style.overflow=''}
 $('#close-editor').addEventListener('click',closeEditor);$('#editor-modal').addEventListener('click',e=>{if(e.target===$('#editor-modal'))closeEditor()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeEditor()});
-$('#edit-message').addEventListener('input',updatePreview);$('#edit-signature').addEventListener('input',updatePreview);$('#edit-recipient').addEventListener('input',updatePreview);$('#edit-date').addEventListener('change',updatePreview);$('#remove-photo').addEventListener('click',()=>{selectedPhoto=null;$('#edit-photo').value='';updatePreview();notify('Cartão sem foto.');});
-$('#edit-photo').addEventListener('change',async e=>{const file=e.target.files?.[0];if(!file)return;try{selectedPhoto=await compressImage(file,900,.82);updatePreview();notify('Foto adicionada ao cartão.')}catch(err){notify('Não foi possível carregar essa foto.')}});
+$('#edit-message').addEventListener('input',()=>{updateMessageCounter();updatePreview()});$('#edit-signature').addEventListener('input',updatePreview);$('#edit-recipient').addEventListener('input',updatePreview);$('#edit-date').addEventListener('change',updatePreview);$('#remove-photo').addEventListener('click',()=>{selectedPhoto=null;$('#edit-photo').value='';photoAdjust={zoom:1,x:0,y:0,rotation:0};syncPhotoControls();updateMessageCounter();updatePreview();notify('Cartão sem foto.');});
+$('#edit-photo').addEventListener('change',async e=>{const file=e.target.files?.[0];if(!file)return;try{selectedPhoto=await compressImage(file,1400,.9);photoAdjust={zoom:1,x:0,y:0,rotation:0};syncPhotoControls();updateMessageCounter();updatePreview();notify('Foto adicionada. Você pode ajustar o enquadramento abaixo.')}catch(err){notify('Não foi possível carregar essa foto.')}});
 
 function shortText(s,n){return s.length>n?s.slice(0,n-1)+'…':s}
+function syncPhotoControls(){
+  $('#photo-adjust').classList.toggle('visible',Boolean(selectedPhoto));
+  $('#photo-zoom').value=Math.round(photoAdjust.zoom*100);$('#photo-zoom-value').textContent=Math.round(photoAdjust.zoom*100)+'%';
+  $('#photo-x').value=photoAdjust.x;$('#photo-x-value').textContent=photoAdjust.x;
+  $('#photo-y').value=photoAdjust.y;$('#photo-y-value').textContent=photoAdjust.y;
+}
+function updateMessageCounter(){
+  const limit=selectedPhoto?MESSAGE_LIMIT_PHOTO:MESSAGE_LIMIT_NO_PHOTO;
+  const el=$('#edit-message'),counter=$('#message-counter');el.maxLength=limit;
+  counter.textContent=`${el.value.length}/${limit} caracteres (${selectedPhoto?'com foto':'sem foto'})`;
+  counter.classList.toggle('over',el.value.length>limit);
+  $('#message-limit-hint').textContent=selectedPhoto?'Com foto: até 180 caracteres. Sem foto: até 300 caracteres.':'Sem foto: até 300 caracteres. Com foto: até 180 caracteres.';
+}
+['zoom','x','y'].forEach(key=>$('#photo-'+key).addEventListener('input',()=>{photoAdjust[key]=key==='zoom'?Number($('#photo-zoom').value)/100:Number($('#photo-'+key).value);syncPhotoControls();updatePreview()}));
+$('#photo-rotate').addEventListener('click',()=>{photoAdjust.rotation=(photoAdjust.rotation+90)%360;updatePreview();});
+$('#photo-reset').addEventListener('click',()=>{photoAdjust={zoom:1,x:0,y:0,rotation:0};syncPhotoControls();updatePreview()});
 function updatePreview(){
   if(!currentCard)return;
   const preview=$('#live-preview'),theme=currentCard.theme,slot=PHOTO_SLOTS[theme];
@@ -192,15 +216,15 @@ function updatePreview(){
   const dateValue=$('#edit-date').value;
   const dateText=dateValue?new Date(dateValue+'T12:00:00').toLocaleDateString('pt-BR'):'';
   const textTop=hasPhoto?({mimo:'53%',minimalista:'54%',scrapbook:'52%'}[theme]):({mimo:'35%',minimalista:'35%',scrapbook:'34%'}[theme]);
-  const photoMarkup=hasPhoto&&slot?`<img class="custom-photo" alt="Foto escolhida" src="${selectedPhoto}" style="left:${slot.x*100}%;top:${slot.y*100}%;width:${slot.w*100}%;height:${slot.h*100}%;transform:rotate(${slot.angle}rad)">`:'';
-  preview.innerHTML=`${photoMarkup}<span class="art-inner" style="top:${textTop};"><span class="card-recipient" style="display:${recipient?'':'none'}">${recipient?'Para '+esc(recipient):''}</span><span class="card-title">${esc(shortText(message,500)).replace(/([.!?])\s+/g,'$1\n')}</span>${signature?`<span class="card-sub signature">${esc(signature)}</span>`:''}${dateText?`<span class="card-sub card-date">${esc(dateText)}</span>`:''}</span>`;
+  const photoMarkup=hasPhoto&&slot?`<div class="photo-window" style="left:${slot.x*100}%;top:${slot.y*100}%;width:${slot.w*100}%;height:${slot.h*100}%;transform:rotate(${slot.angle}rad)"><img alt="Foto escolhida" src="${selectedPhoto}" style="object-position:${50+photoAdjust.x/2}% ${50+photoAdjust.y/2}%;transform:scale(${photoAdjust.zoom}) rotate(${photoAdjust.rotation}deg)"></div>`:'';
+  preview.innerHTML=`${photoMarkup}<span class="art-inner" style="top:${textTop};"><span class="card-recipient" style="display:${recipient?'':'none'}">${recipient?'Para '+esc(recipient):''}</span><span class="card-title">${esc(message).replace(/([.!?])\s+/g,'$1\n')}</span>${signature?`<span class="card-sub signature">${esc(signature)}</span>`:''}${dateText?`<span class="card-sub card-date">${esc(dateText)}</span>`:''}</span>`;
   // Ajusta o tamanho da mensagem à área disponível sem deixar as linhas ultrapassarem as margens.
   const title=preview.querySelector('.card-title'),inner=preview.querySelector('.art-inner');
   if(title&&inner){let size=parseFloat(getComputedStyle(title).fontSize);const minSize=8;const fit=()=>title.scrollHeight<=inner.clientHeight*.78&&title.scrollWidth<=inner.clientWidth;while(size>minSize&&!fit()){size-=1;title.style.fontSize=size+'px';}let total=inner.scrollHeight;if(total>inner.clientHeight){inner.style.maxHeight='58%';while(size>minSize&&inner.scrollHeight>inner.clientHeight){size-=1;title.style.fontSize=size+'px';}}}
 }
 function compressImage(file,maxSize,quality){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>{const img=new Image();img.onload=()=>{const scale=Math.min(1,maxSize/Math.max(img.width,img.height)),canvas=document.createElement('canvas');canvas.width=Math.round(img.width*scale);canvas.height=Math.round(img.height*scale);canvas.getContext('2d').drawImage(img,0,0,canvas.width,canvas.height);resolve(canvas.toDataURL('image/jpeg',quality))};img.onerror=reject;img.src=reader.result};reader.onerror=reject;reader.readAsDataURL(file)})}
-function wrapText(ctx,text,x,y,maxWidth,lineHeight,maxLines){const words=text.split(/\s+/);let line='',lines=[];for(const word of words){const test=line?line+' '+word:word;if(ctx.measureText(test).width>maxWidth&&line){lines.push(line);line=word}else line=test}if(line)lines.push(line);if(lines.length>maxLines){lines=lines.slice(0,maxLines);let last=lines[maxLines-1];while(ctx.measureText(last+'…').width>maxWidth&&last.length)last=last.slice(0,-1);lines[maxLines-1]=last+'…'}lines.forEach((l,i)=>ctx.fillText(l,x,y+i*lineHeight));return lines.length}
-function wrapSentences(ctx,text,x,y,maxWidth,lineHeight,maxLines,gap=18){const sentences=(text.match(/[^.!?]+[.!?]+|[^.!?]+$/g)||[text]).map(v=>v.trim()).filter(Boolean);let lines=0;for(let i=0;i<sentences.length&&lines<maxLines;i++){const n=wrapText(ctx,sentences[i],x,y,maxWidth,lineHeight,maxLines-lines);lines+=n;y+=n*lineHeight;if(i<sentences.length-1&&lines<maxLines)y+=gap}return {lines,y}}
+function wrapText(ctx,text,x,y,maxWidth,lineHeight,maxLines){const words=text.split(/\s+/);let line='',lines=[];for(const word of words){const test=line?line+' '+word:word;if(ctx.measureText(test).width>maxWidth&&line){lines.push(line);line=word}else line=test}if(line)lines.push(line);if(lines.length>maxLines)return -lines.length;lines.forEach((l,i)=>ctx.fillText(l,x,y+i*lineHeight));return lines.length}
+function wrapSentences(ctx,text,x,y,maxWidth,lineHeight,maxLines,gap=14){const sentences=(text.match(/[^.!?]+[.!?]+|[^.!?]+$/g)||[text]).map(v=>v.trim()).filter(Boolean);let lines=0;for(let i=0;i<sentences.length;i++){const n=wrapText(ctx,sentences[i],540,y,maxWidth,lineHeight,999);lines+=Math.abs(n);y+=Math.abs(n)*lineHeight;if(i<sentences.length-1)y+=gap}return {lines,y}}
 async function makeJpeg(){
   if(!currentCard)throw Error('Selecione um cartão');
   const canvas=document.createElement('canvas');canvas.width=1080;canvas.height=1440;
@@ -209,32 +233,38 @@ async function makeJpeg(){
   const slot=PHOTO_SLOTS[theme];
   if(selectedPhoto&&slot){
     const img=await loadImg(selectedPhoto),x=slot.x*1080,y=slot.y*1440,w=slot.w*1080,h=slot.h*1440;
-    ctx.save();ctx.beginPath();ctx.rect(x,y,w,h);ctx.clip();
-    const scale=Math.max(w/img.width,h/img.height),dw=img.width*scale,dh=img.height*scale;
-    ctx.drawImage(img,x+(w-dw)/2,y+(h-dh)/2,dw,dh);ctx.restore();
+    ctx.save();ctx.beginPath();ctx.rect(x,y,w,h);ctx.clip();ctx.translate(x+w/2,y+h/2);ctx.rotate((photoAdjust.rotation||0)*Math.PI/180);
+    const swapped=Math.abs((photoAdjust.rotation||0)%180)===90;const boxW=swapped?h:w,boxH=swapped?w:h;
+    const scale=Math.max(boxW/img.width,boxH/img.height)*(photoAdjust.zoom||1),dw=img.width*scale,dh=img.height*scale;
+    ctx.drawImage(img,-dw/2+(photoAdjust.x/100)*w*.42,-dh/2+(photoAdjust.y/100)*h*.42,dw,dh);ctx.restore();
   }
   const message=$('#edit-message').value.trim()||currentCard.message;
   const recipient=$('#edit-recipient').value.trim(),signature=$('#edit-signature').value.trim();
   const dateValue=$('#edit-date').value,dateText=dateValue?new Date(dateValue+'T12:00:00').toLocaleDateString('pt-BR'):'';
   ctx.fillStyle=theme==='minimalista'?'#75594b':'#654b37';ctx.textAlign='center';ctx.textBaseline='top';
-  let y=selectedPhoto?({mimo:775,minimalista:790,scrapbook:760}[theme]):({mimo:520,minimalista:520,scrapbook:500}[theme]);
-  const maxWidth=650, left=215, bottom=1160;
-  if(recipient){ctx.font='28px Georgia,serif';ctx.fillText('Para '+recipient,540,y,maxWidth);y+=68;}
-  else y+=12;
-  let fontSize=38,lineHeight=46;
+  let y=selectedPhoto?({mimo:770,minimalista:790,scrapbook:760}[theme]):({mimo:520,minimalista:520,scrapbook:500}[theme]);
+  const maxWidth=560,bottom=1160;
+  if(recipient){ctx.font='25px Georgia,serif';ctx.fillText('Para '+recipient,540,y,maxWidth);y+=54;} else y+=8;
+  let fontSize=35,lineHeight=42;
   const measureLines=()=>{ctx.font=`600 ${fontSize}px Georgia,serif`;let count=0,line='';for(const word of message.split(/\s+/)){const test=line?line+' '+word:word;if(ctx.measureText(test).width>maxWidth&&line){count++;line=word}else line=test}if(line)count++;return count};
-  let lines=measureLines();
-  while(fontSize>18 && y+lines*lineHeight+ (signature?95:0)+(dateText?42:0)>bottom){fontSize-=2;lineHeight=Math.round(fontSize*1.2);lines=measureLines();}
+  const reserved=(signature?62:0)+(dateText?34:0)+22;
+  while(fontSize>15 && y+measureLines()*lineHeight+reserved>bottom){fontSize-=1;lineHeight=Math.round(fontSize*1.18);}
   ctx.font=`600 ${fontSize}px Georgia,serif`;
-  const wrapped=wrapSentences(ctx,message,540,y,maxWidth,lineHeight,Math.max(1,Math.floor((bottom-y-((signature?80:0)+(dateText?35:0)))/lineHeight)),18);y=wrapped.y+42;
-  if(signature){ctx.font='italic 27px Georgia,serif';const count=wrapText(ctx,signature,540,y,760,34,1);y+=count*34+12;}
-  if(dateText){ctx.font='24px Georgia,serif';ctx.fillText(dateText,540,y,760);}
+  const wrapped=wrapSentences(ctx,message,540,y,maxWidth,lineHeight,999,12);y=wrapped.y+24;
+  if(signature){ctx.font='italic 25px Georgia,serif';ctx.fillText(signature,540,y,maxWidth);y+=34;}
+  if(dateText){ctx.font='22px Georgia,serif';ctx.fillText(dateText,540,y,maxWidth);}
   return new Promise((resolve,reject)=>canvas.toBlob(blob=>blob?resolve(blob):reject(Error('Falha ao gerar imagem')),'image/jpeg',.92));
 }
 function loadImg(src){return new Promise((resolve,reject)=>{const i=new Image();i.onload=()=>resolve(i);i.onerror=reject;i.src=src})}
 function downloadBlob(blob,name){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500)}
-$('#download-card').addEventListener('click',async()=>{try{const blob=await makeJpeg();downloadBlob(blob,'mimo-cards-versao-7.2.jpg');notify('Cartão salvo em JPEG.')}catch(e){notify('Não foi possível gerar o cartão. Tente novamente.')}})
-$('#share-card').addEventListener('click',async()=>{try{const blob=await makeJpeg(),file=new File([blob],'mimo-cards-versao-7.2.jpg',{type:'image/jpeg'});if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:'Mimo Cards',text:'Um cartão com carinho'});}else{downloadBlob(blob,'mimo-cards-versao-7.2.jpg');notify('JPEG baixado. Anexe a imagem no WhatsApp para compartilhar.')}}catch(e){if(e.name!=='AbortError')notify('Não foi possível compartilhar agora. Tente baixar o JPEG.')}})
+async function showQuickPreview(){try{const blob=await makeJpeg();const url=URL.createObjectURL(blob);const img=$('#quick-preview-image');if(img.dataset.blobUrl)URL.revokeObjectURL(img.dataset.blobUrl);img.dataset.blobUrl=url;img.src=url;$('#preview-modal').classList.add('open')}catch(e){notify('Não foi possível gerar a visualização.')}}
+$('#quick-preview').addEventListener('click',showQuickPreview);
+function closeQuickPreview(){$('#preview-modal').classList.remove('open')}
+$('#close-preview').addEventListener('click',closeQuickPreview);$('#preview-back').addEventListener('click',closeQuickPreview);
+$('#preview-modal').addEventListener('click',e=>{if(e.target===$('#preview-modal'))closeQuickPreview()});
+$('#preview-share').addEventListener('click',async()=>{closeQuickPreview();$('#share-card').click()});
+$('#download-card').addEventListener('click',async()=>{try{const blob=await makeJpeg();downloadBlob(blob,'mimo-cards-versao-7.3.jpg');notify('Cartão salvo em JPEG.')}catch(e){notify('Não foi possível gerar o cartão. Tente novamente.')}})
+$('#share-card').addEventListener('click',async()=>{try{const blob=await makeJpeg(),file=new File([blob],'mimo-cards-versao-7.3.jpg',{type:'image/jpeg'});if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:'Mimo Cards',text:'Um cartão com carinho'});}else{downloadBlob(blob,'mimo-cards-versao-7.3.jpg');notify('JPEG baixado. Anexe a imagem no WhatsApp para compartilhar.')}}catch(e){if(e.name!=='AbortError')notify('Não foi possível compartilhar agora. Tente baixar o JPEG.')}})
 function birthdays(){try{return JSON.parse(localStorage.getItem('mimo-birthdays')||'[]')}catch{return []}}
 $('#export-backup').addEventListener('click',()=>{
   try{
