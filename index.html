@@ -7,7 +7,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="description" content="Mimo Cards — pequenos gestos, grandes lembranças. Versão 7.3.">
+<meta name="description" content="Mimo Cards — pequenos gestos, grandes lembranças. Versão 7.5.">
 <title>Mimo Cards</title>
 <style>
 :root{--bg:#f7f6f2;--ink:#28312d;--muted:#737b76;--line:#e7e5dd;--green:#477a67;--panel:#fffefa}
@@ -81,17 +81,42 @@
 @media(max-width:600px){.preview .art-inner{gap:0!important}.preview .card-title{font-size:clamp(8px,2.4vw,14px)!important;line-height:1.08!important}.preview .card-sub{font-size:7px!important}.preview .card-recipient{margin-bottom:8px}}
 
 
-/* Versão 7.3: ajuste manual da foto, prévia ampliada e limite de texto visível. */
-.photo-adjust{border:1px solid var(--line);border-radius:16px;background:#fff;padding:14px;margin:12px 0;display:none}.photo-adjust.visible{display:block}.photo-adjust h3{font-size:15px;margin:0 0 10px}.adjust-row{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;margin:9px 0}.adjust-row label{font-size:13px;font-weight:650}.adjust-row input[type=range]{grid-column:1/-1;width:100%;accent-color:var(--green)}.adjust-buttons{display:flex;gap:8px;flex-wrap:wrap}.char-counter{font-size:12px;color:var(--muted);text-align:right;margin-top:5px}.char-counter.over{color:#b42318;font-weight:750}.preview-modal{display:none;position:fixed;inset:0;background:#18201de8;z-index:60;padding:18px;overflow:auto;align-items:center;justify-content:center}.preview-modal.open{display:flex}.preview-modal-inner{width:min(100%,520px);display:flex;flex-direction:column;align-items:center;gap:12px}.preview-modal img{display:block;max-width:100%;max-height:78vh;object-fit:contain;border-radius:8px;box-shadow:0 12px 40px #0005}.preview-modal .preview-modal-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}.preview-modal .secondary{background:#fff}.preview-modal .close-preview{background:#fff;border:0;border-radius:50%;width:42px;height:42px;font-size:24px;align-self:flex-end}
+/* Versão 7.5: ajuste manual da foto, prévia ampliada e limite de texto visível. */
+.photo-adjust{border:1px solid var(--line);border-radius:16px;background:#fff;padding:14px;margin:12px 0;display:none}.photo-adjust.visible{display:block}.photo-adjust h3{font-size:15px;margin:0 0 10px}.photo-crop-preview{width:min(100%,280px);aspect-ratio:1/1;margin:12px auto 18px;border:3px solid #d8d8d8;border-radius:10px;background:#f1f1ed;overflow:hidden;position:relative;box-shadow:inset 0 0 0 1px #fff}.photo-crop-preview img{width:100%;height:100%;display:block;object-fit:cover;transform-origin:center center}.photo-crop-caption{text-align:center;font-size:12px;color:var(--muted);margin:-8px 0 14px}.adjust-row{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;margin:9px 0}.adjust-row label{font-size:13px;font-weight:650}.adjust-row input[type=range]{grid-column:1/-1;width:100%;accent-color:var(--green)}.adjust-buttons{display:flex;gap:8px;flex-wrap:wrap}.char-counter{font-size:12px;color:var(--muted);text-align:right;margin-top:5px}.char-counter.over{color:#b42318;font-weight:750}.preview-modal{display:none;position:fixed;inset:0;background:#18201de8;z-index:60;padding:18px;overflow:auto;align-items:center;justify-content:center}.preview-modal.open{display:flex}.preview-modal-inner{width:min(100%,520px);display:flex;flex-direction:column;align-items:center;gap:12px}.preview-modal img{display:block;max-width:100%;max-height:78vh;object-fit:contain;border-radius:8px;box-shadow:0 12px 40px #0005}.preview-modal .preview-modal-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}.preview-modal .secondary{background:#fff}.preview-modal .close-preview{background:#fff;border:0;border-radius:50%;width:42px;height:42px;font-size:24px;align-self:flex-end}
 .preview .photo-window{position:absolute;z-index:4;overflow:hidden;pointer-events:none}.preview .photo-window img{width:100%;height:100%;object-fit:cover;display:block;transform-origin:center center}
 @media(max-width:600px){.adjust-row label{font-size:12px}.photo-adjust{padding:12px}.preview-modal{padding:10px}}
+
+/* Versão 7.5 — painel compacto: foto e todos os controles juntos na tela do celular. */
+.photo-adjust{padding:10px;margin:10px 0 12px;border-radius:14px;}
+.photo-adjust h3{font-size:15px;margin:0 0 3px;}
+.photo-adjust-help{margin:0 0 5px;font-size:11px;line-height:1.25;}
+.photo-crop-preview{width:min(100%,190px);margin:5px auto 4px;border-width:2px;border-radius:8px;}
+.photo-crop-caption{font-size:10px;margin:0 0 5px;line-height:1.2;}
+.adjust-row{grid-template-columns:1fr auto;gap:2px 8px;margin:5px 0 7px;}
+.adjust-row label{font-size:12px;line-height:1.15;}
+.adjust-row input[type=range]{height:22px;margin:0;}
+.adjust-buttons{gap:7px;margin-top:4px;}
+.adjust-buttons .secondary{padding:8px 11px;font-size:12px;border-radius:10px;}
+@media(max-width:600px){
+ .dialog{padding:14px;max-height:96dvh;}
+ .photo-adjust{padding:9px;margin:8px 0 10px;}
+ .photo-adjust h3{font-size:14px;}
+ .photo-adjust-help{font-size:10px;}
+ .photo-crop-preview{width:min(100%,165px);margin:4px auto 3px;}
+ .photo-crop-caption{font-size:9px;margin-bottom:3px;}
+ .adjust-row{margin:3px 0 5px;gap:0 7px;}
+ .adjust-row label{font-size:11px;}
+ .adjust-row input[type=range]{height:19px;}
+ .adjust-buttons .secondary{padding:7px 9px;font-size:11px;}
+}
+
 </style>
 </head>
 <body>
 <header>
 <img class="brand-icon" src="apple-touch-icon.png" alt="Mimo Cards" onerror="this.style.display='none'">
 <div class="brand"><h1>Mimo Cards</h1><div class="tagline">Pequenos gestos, grandes lembranças</div></div>
-<span class="pill">Gratuito · sem cadastro</span><button class="version-badge" id="refresh-version" type="button" aria-label="Atualizar Mimo Cards" title="Toque para buscar a versão mais recente"><span>Versão 7.3<span class="version-help">Toque para atualizar</span></span><span class="refresh-symbol" aria-hidden="true">↻</span></button>
+<span class="pill">Gratuito · sem cadastro</span><button class="version-badge" id="refresh-version" type="button" aria-label="Atualizar Mimo Cards" title="Toque para buscar a versão mais recente"><span>Versão 7.5<span class="version-help">Toque para atualizar</span></span><span class="refresh-symbol" aria-hidden="true">↻</span></button>
 </header>
 <nav class="nav" aria-label="Navegação">
 <button class="active" data-page="home">Início</button><button data-page="cards">Cartões</button><button data-page="birthdays">Aniversários</button>
@@ -126,7 +151,7 @@
 <div class="field"><label for="edit-signature">Assinatura (opcional)</label><input id="edit-signature" placeholder="Seu nome"></div>
 <div class="field"><label for="edit-date">Data (opcional)</label><input id="edit-date" type="date"></div>
 <div class="field"><label for="edit-photo">Adicionar uma foto (opcional)</label><input id="edit-photo" type="file" accept="image/*"><button class="secondary" id="remove-photo" type="button">Continuar sem foto / remover foto</button></div>
-<div id="photo-adjust" class="photo-adjust"><h3>Ajustar foto</h3><p class="hint">Use os controles para centralizar a pessoa ou objeto na moldura. O ajuste aparece também no JPEG final.</p><div class="adjust-row"><label for="photo-zoom">Aumentar / diminuir</label><span id="photo-zoom-value">100%</span><input id="photo-zoom" type="range" min="100" max="220" value="100" step="5"></div><div class="adjust-row"><label for="photo-x">Mover para esquerda / direita</label><span id="photo-x-value">0</span><input id="photo-x" type="range" min="-100" max="100" value="0" step="5"></div><div class="adjust-row"><label for="photo-y">Mover para cima / baixo</label><span id="photo-y-value">0</span><input id="photo-y" type="range" min="-100" max="100" value="0" step="5"></div><div class="adjust-buttons"><button class="secondary" id="photo-rotate" type="button">↻ Girar 90°</button><button class="secondary" id="photo-reset" type="button">Reiniciar ajuste</button></div></div>
+<div id="photo-adjust" class="photo-adjust"><h3>Ajustar foto</h3><p class="hint photo-adjust-help">Ajuste olhando a foto logo acima — sem sair desta área.</p><div class="photo-crop-preview"><img id="photo-crop-image" alt="Prévia do enquadramento da foto"></div><p class="photo-crop-caption">Prévia do enquadramento</p><div class="adjust-row"><label for="photo-zoom">Aumentar / diminuir</label><span id="photo-zoom-value">100%</span><input id="photo-zoom" type="range" min="100" max="220" value="100" step="5"></div><div class="adjust-row"><label for="photo-x">Mover para esquerda / direita</label><span id="photo-x-value">0</span><input id="photo-x" type="range" min="-100" max="100" value="0" step="5"></div><div class="adjust-row"><label for="photo-y">Mover para cima / baixo</label><span id="photo-y-value">0</span><input id="photo-y" type="range" min="-100" max="100" value="0" step="5"></div><div class="adjust-buttons"><button class="secondary" id="photo-rotate" type="button">↻ Girar 90°</button><button class="secondary" id="photo-reset" type="button">Reiniciar ajuste</button></div></div>
 <p class="hint" id="photo-treatment-field">A foto é opcional. Cada modelo tem uma composição própria; se não adicionar uma imagem, o cartão usa a decoração alternativa sem foto.</p>
 <p class="hint">Dica: separe as frases com ponto final. O cartão organiza as frases em linhas para facilitar a leitura. A assinatura “Made by Mimo Cards” aparece discretamente no rodapé.</p>
 <div class="actions"><button class="secondary" id="quick-preview">Visualizar cartão</button><button class="primary" id="share-card">Compartilhar cartão</button><button class="secondary" id="download-card">Baixar JPEG</button></div>
@@ -189,6 +214,8 @@ $('#edit-photo').addEventListener('change',async e=>{const file=e.target.files?.
 function shortText(s,n){return s.length>n?s.slice(0,n-1)+'…':s}
 function syncPhotoControls(){
   $('#photo-adjust').classList.toggle('visible',Boolean(selectedPhoto));
+  const cropImage=$('#photo-crop-image');
+  if(selectedPhoto){cropImage.src=selectedPhoto;const slot=PHOTO_SLOTS[currentCard?.theme]||{w:1,h:1};const crop=$('.photo-crop-preview');crop.style.aspectRatio=`${slot.w}/${slot.h}`;cropImage.style.transform=`translate(${photoAdjust.x*.42}%, ${photoAdjust.y*.42}%) scale(${photoAdjust.zoom}) rotate(${photoAdjust.rotation}deg)`;}
   $('#photo-zoom').value=Math.round(photoAdjust.zoom*100);$('#photo-zoom-value').textContent=Math.round(photoAdjust.zoom*100)+'%';
   $('#photo-x').value=photoAdjust.x;$('#photo-x-value').textContent=photoAdjust.x;
   $('#photo-y').value=photoAdjust.y;$('#photo-y-value').textContent=photoAdjust.y;
@@ -201,7 +228,7 @@ function updateMessageCounter(){
   $('#message-limit-hint').textContent=selectedPhoto?'Com foto: até 180 caracteres. Sem foto: até 300 caracteres.':'Sem foto: até 300 caracteres. Com foto: até 180 caracteres.';
 }
 ['zoom','x','y'].forEach(key=>$('#photo-'+key).addEventListener('input',()=>{photoAdjust[key]=key==='zoom'?Number($('#photo-zoom').value)/100:Number($('#photo-'+key).value);syncPhotoControls();updatePreview()}));
-$('#photo-rotate').addEventListener('click',()=>{photoAdjust.rotation=(photoAdjust.rotation+90)%360;updatePreview();});
+$('#photo-rotate').addEventListener('click',()=>{photoAdjust.rotation=(photoAdjust.rotation+90)%360;syncPhotoControls();updatePreview();});
 $('#photo-reset').addEventListener('click',()=>{photoAdjust={zoom:1,x:0,y:0,rotation:0};syncPhotoControls();updatePreview()});
 function updatePreview(){
   if(!currentCard)return;
@@ -263,8 +290,8 @@ function closeQuickPreview(){$('#preview-modal').classList.remove('open')}
 $('#close-preview').addEventListener('click',closeQuickPreview);$('#preview-back').addEventListener('click',closeQuickPreview);
 $('#preview-modal').addEventListener('click',e=>{if(e.target===$('#preview-modal'))closeQuickPreview()});
 $('#preview-share').addEventListener('click',async()=>{closeQuickPreview();$('#share-card').click()});
-$('#download-card').addEventListener('click',async()=>{try{const blob=await makeJpeg();downloadBlob(blob,'mimo-cards-versao-7.3.jpg');notify('Cartão salvo em JPEG.')}catch(e){notify('Não foi possível gerar o cartão. Tente novamente.')}})
-$('#share-card').addEventListener('click',async()=>{try{const blob=await makeJpeg(),file=new File([blob],'mimo-cards-versao-7.3.jpg',{type:'image/jpeg'});if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:'Mimo Cards',text:'Um cartão com carinho'});}else{downloadBlob(blob,'mimo-cards-versao-7.3.jpg');notify('JPEG baixado. Anexe a imagem no WhatsApp para compartilhar.')}}catch(e){if(e.name!=='AbortError')notify('Não foi possível compartilhar agora. Tente baixar o JPEG.')}})
+$('#download-card').addEventListener('click',async()=>{try{const blob=await makeJpeg();downloadBlob(blob,'mimo-cards-versao-7.5.jpg');notify('Cartão salvo em JPEG.')}catch(e){notify('Não foi possível gerar o cartão. Tente novamente.')}})
+$('#share-card').addEventListener('click',async()=>{try{const blob=await makeJpeg(),file=new File([blob],'mimo-cards-versao-7.5.jpg',{type:'image/jpeg'});if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:'Mimo Cards',text:'Um cartão com carinho'});}else{downloadBlob(blob,'mimo-cards-versao-7.5.jpg');notify('JPEG baixado. Anexe a imagem no WhatsApp para compartilhar.')}}catch(e){if(e.name!=='AbortError')notify('Não foi possível compartilhar agora. Tente baixar o JPEG.')}})
 function birthdays(){try{return JSON.parse(localStorage.getItem('mimo-birthdays')||'[]')}catch{return []}}
 $('#export-backup').addEventListener('click',()=>{
   try{
