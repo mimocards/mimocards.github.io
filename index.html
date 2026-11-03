@@ -168,7 +168,7 @@
 <div class="actions"><button class="secondary" id="quick-preview">Visualizar cartão</button><button class="primary" id="share-card">Compartilhar cartão</button><button class="secondary" id="download-card">Baixar JPEG</button></div>
 </div></div>
 </div></div>
-<div class="preview-modal" id="preview-modal" role="dialog" aria-modal="true" aria-label="Visualização e ajuste do cartão"><div class="preview-modal-inner"><button class="close-preview" id="close-preview" aria-label="Fechar visualização">×</button><div class="preview-stage" id="preview-stage"><img id="quick-preview-image" alt="Prévia real do cartão personalizado"><div class="photo-drag-area" id="photo-drag-area" aria-label="Arraste para reposicionar a foto" title="Arraste para ajustar a foto"></div></div><div id="preview-photo-adjust" class="photo-adjust"><h3>Ajustar foto no cartão</h3><p class="hint photo-adjust-help">Arraste a área tracejada sobre a foto ou use os controles. A prévia mostra o cartão final.</p><div class="adjust-row"><label for="photo-zoom">Ampliar / aproximar a foto</label><span id="photo-zoom-value">100%</span><input id="photo-zoom" type="range" min="100" max="250" value="100" step="5"></div><div class="adjust-row"><label for="photo-x">Mover para esquerda / direita</label><span id="photo-x-value">0</span><input id="photo-x" type="range" min="-100" max="100" value="0" step="1"></div><div class="adjust-row"><label for="photo-y">Mover para cima / baixo</label><span id="photo-y-value">0</span><input id="photo-y" type="range" min="-100" max="100" value="0" step="1"></div><div class="adjust-buttons"><button class="secondary" id="photo-rotate" type="button">↻ Girar 90°</button><button class="secondary" id="photo-reset" type="button">Reiniciar ajuste</button></div></div><div class="preview-modal-actions"><button class="secondary" id="preview-back">Voltar e editar</button><button class="secondary" id="preview-download">Baixar JPEG</button><button class="primary" id="preview-share">Compartilhar cartão</button></div></div></div><div class="toast" id="toast"></div>
+<div class="preview-modal" id="preview-modal" role="dialog" aria-modal="true" aria-label="Visualização e ajuste do cartão"><div class="preview-modal-inner"><button class="close-preview" id="close-preview" aria-label="Fechar visualização">×</button><div class="preview-stage" id="preview-stage"><img id="quick-preview-image" alt="Prévia real do cartão personalizado"><div class="photo-drag-area" id="photo-drag-area" aria-label="Arraste para reposicionar a foto" title="Arraste para ajustar a foto"></div></div><div id="preview-photo-adjust" class="photo-adjust"><h3>Ajustar foto no cartão</h3><p class="hint photo-adjust-help">Arraste a foto dentro da moldura ou use os controles. O zoom pode reduzir ou ampliar a imagem; a prévia mostra o cartão final.</p><div class="adjust-row"><label for="photo-zoom">Ampliar / aproximar a foto</label><span id="photo-zoom-value">100%</span><input id="photo-zoom" type="range" min="50" max="300" value="100" step="5"></div><div class="adjust-row"><label for="photo-x">Mover para esquerda / direita</label><span id="photo-x-value">0</span><input id="photo-x" type="range" min="-150" max="150" value="0" step="1"></div><div class="adjust-row"><label for="photo-y">Mover para cima / baixo</label><span id="photo-y-value">0</span><input id="photo-y" type="range" min="-150" max="150" value="0" step="1"></div><div class="adjust-buttons"><button class="secondary" id="photo-rotate" type="button">↻ Girar 90°</button><button class="secondary" id="photo-reset" type="button">Reiniciar ajuste</button></div></div><div class="preview-modal-actions"><button class="secondary" id="preview-back">Voltar e editar</button><button class="secondary" id="preview-download">Baixar JPEG</button><button class="primary" id="preview-share">Compartilhar cartão</button></div></div></div><div class="toast" id="toast"></div>
 <script>
 (()=>{
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
@@ -227,8 +227,8 @@ function syncPhotoControls(){
   const panel=$('#preview-photo-adjust');
   if(panel)panel.classList.toggle('visible',Boolean(selectedPhoto));
   $('#photo-zoom').value=Math.round(photoAdjust.zoom*100);$('#photo-zoom-value').textContent=Math.round(photoAdjust.zoom*100)+'%';
-  $('#photo-x').value=photoAdjust.x;$('#photo-x-value').textContent=photoAdjust.x;
-  $('#photo-y').value=photoAdjust.y;$('#photo-y-value').textContent=photoAdjust.y;
+  $('#photo-x').value=Math.round(photoAdjust.x);$('#photo-x-value').textContent=Math.round(photoAdjust.x);
+  $('#photo-y').value=Math.round(photoAdjust.y);$('#photo-y-value').textContent=Math.round(photoAdjust.y);
 }
 function updateMessageCounter(){
   const limit=selectedPhoto?MESSAGE_LIMIT_PHOTO:MESSAGE_LIMIT_NO_PHOTO;
@@ -267,7 +267,7 @@ $('#photo-reset').addEventListener('click',()=>{photoAdjust={zoom:1,x:0,y:0,rota
 (()=>{
   const area=$('#photo-drag-area');let dragging=false,lastX=0,lastY=0;
   area.addEventListener('pointerdown',e=>{if(!selectedPhoto)return;dragging=true;lastX=e.clientX;lastY=e.clientY;area.setPointerCapture(e.pointerId);e.preventDefault()});
-  area.addEventListener('pointermove',e=>{if(!dragging)return;const rect=area.getBoundingClientRect();const dx=e.clientX-lastX,dy=e.clientY-lastY;lastX=e.clientX;lastY=e.clientY;photoAdjust.x=Math.max(-100,Math.min(100,photoAdjust.x+dx/Math.max(1,rect.width)*238));photoAdjust.y=Math.max(-100,Math.min(100,photoAdjust.y+dy/Math.max(1,rect.height)*238));syncPhotoControls();renderQuickPreview();e.preventDefault()});
+  area.addEventListener('pointermove',e=>{if(!dragging)return;const rect=area.getBoundingClientRect();const dx=e.clientX-lastX,dy=e.clientY-lastY;lastX=e.clientX;lastY=e.clientY;photoAdjust.x=Math.max(-150,Math.min(150,photoAdjust.x+dx/Math.max(1,rect.width)*100));photoAdjust.y=Math.max(-150,Math.min(150,photoAdjust.y+dy/Math.max(1,rect.height)*100));syncPhotoControls();renderQuickPreview();e.preventDefault()});
   const stop=()=>{dragging=false};area.addEventListener('pointerup',stop);area.addEventListener('pointercancel',stop);area.addEventListener('lostpointercapture',stop);
 })();
 function compressImage(file,maxSize,quality){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>{const img=new Image();img.onload=()=>{const scale=Math.min(1,maxSize/Math.max(img.width,img.height)),canvas=document.createElement('canvas');canvas.width=Math.round(img.width*scale);canvas.height=Math.round(img.height*scale);canvas.getContext('2d').drawImage(img,0,0,canvas.width,canvas.height);resolve(canvas.toDataURL('image/jpeg',quality))};img.onerror=reject;img.src=reader.result};reader.onerror=reject;reader.readAsDataURL(file)})}
@@ -284,7 +284,7 @@ async function makeJpeg(){
     ctx.save();ctx.beginPath();ctx.rect(x,y,w,h);ctx.clip();ctx.translate(x+w/2,y+h/2);ctx.rotate((photoAdjust.rotation||0)*Math.PI/180);
     const swapped=Math.abs((photoAdjust.rotation||0)%180)===90;const boxW=swapped?h:w,boxH=swapped?w:h;
     const scale=Math.max(boxW/img.width,boxH/img.height)*(photoAdjust.zoom||1),dw=img.width*scale,dh=img.height*scale;
-    ctx.drawImage(img,-dw/2+(photoAdjust.x/100)*w*.42,-dh/2+(photoAdjust.y/100)*h*.42,dw,dh);ctx.restore();
+    ctx.drawImage(img,-dw/2+(photoAdjust.x/100)*w,-dh/2+(photoAdjust.y/100)*h,dw,dh);ctx.restore();
   }
   const message=$('#edit-message').value.trim()||currentCard.message;
   const recipient=$('#edit-recipient').value.trim(),signature=$('#edit-signature').value.trim();
