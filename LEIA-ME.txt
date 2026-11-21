@@ -1,0 +1,25 @@
+MIMO CARDS — CARTÕES PRONTOS PARA O GITHUB
+
+Conteúdo deste pacote
+- assets/cartoes/minimalistas/: 6 cartões minimalistas
+- assets/cartoes/florais/: 6 cartões florais
+
+IMPORTANTE
+- As 12 imagens foram copiadas dos arquivos originais aprovados.
+- Não foram cortadas, esticadas, estreitadas, comprimidas ou convertidas.
+- Minimalistas: 1229 x 1536 px.
+- Florais: 1152 x 1536 px.
+- As proporções originais foram preservadas.
+
+COMO ENVIAR
+1. Extraia o ZIP no seu computador/tablet.
+2. No repositório do Mimo Cards no GitHub, abra a pasta principal (a mesma onde está index.html).
+3. Envie a pasta assets inteira, mantendo a estrutura de pastas.
+4. Faça o commit das alterações.
+
+CAMINHOS DOS ARQUIVOS
+- assets/cartoes/minimalistas/minimalista-01.jpg até minimalista-06.jpg
+- assets/cartoes/florais/floral-01.jpg até floral-06.jpg
+
+OBSERVAÇÃO
+Este pacote contém os arquivos de imagem e este guia. Ele não substitui o index.html nem altera sozinho o código do aplicativo. Para exibir os cartões na interface, o código do app precisa apontar para esses caminhos.
