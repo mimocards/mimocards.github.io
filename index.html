@@ -23,7 +23,7 @@
 .preview-message{left:13%;width:74%;top:37%;height:33%;display:flex;align-items:center;justify-content:center;font-size:13px;line-height:1.34;white-space:pre-wrap;word-break:normal}
 .preview-sign{top:78%;font-size:20px;line-height:1.35}
 .preview-date{top:89%;font-size:19px;line-height:1.3}
-.preview-stamp{position:absolute;width:44px;height:44px;right:11%;top:73%;object-fit:contain;opacity:.78;pointer-events:none;filter:none;background:transparent;border:0;box-shadow:none}.char-count{font-size:12px;color:var(--muted);text-align:right;margin-top:5px}.card-dialog{max-width:620px}
+.preview-stamp{position:absolute;width:44px;height:44px;left:87%;top:76%;transform:translate(-50%,-50%);object-fit:contain;opacity:.82;pointer-events:auto;touch-action:none;cursor:grab;user-select:none;-webkit-user-drag:none;filter:none;background:transparent;border:0;box-shadow:none}.preview-stamp.dragging{cursor:grabbing;filter:drop-shadow(0 0 3px rgba(0,0,0,.35))}.char-count{font-size:12px;color:var(--muted);text-align:right;margin-top:5px}.card-dialog{max-width:620px}
 @media(max-width:650px){.collection-tabs button{font-size:12px}.card-preview{width:min(100%,300px)}}
 @media(max-width:650px){header{padding:17px 16px 10px}.brand h1{font-size:18px}.brand p{font-size:11px}.brand-icon{width:48px;height:48px}.refresh-app{padding:7px 9px;font-size:11px}.wrap{padding:6px 15px 30px}.topline{align-items:flex-start;flex-direction:column}.topline h2{font-size:24px}.topline .primary{width:100%}.form-grid{grid-template-columns:1fr 1fr}.field.name{grid-column:1/-1}.year-grid{grid-template-columns:repeat(2,1fr)}.cards{grid-template-columns:repeat(2,1fr)}.day{min-height:53px;padding:6px 2px}.surface{padding:13px}.tabs button{font-size:12px;padding:10px 4px}}
 
@@ -41,7 +41,7 @@
 <header>
 <img class="brand-icon" src="apple-touch-icon.png" alt="Cãozinho Mimo Cards" onerror="this.style.display='none'">
 <div class="brand"><h1>Mimo Cards Birthday</h1><p>Carinho lembrado o ano inteiro ♡</p></div>
-<div class="app-version"><span id="version-label">Versão 7.2</span><button id="refresh-app" class="refresh-app" type="button">↻ Atualizar</button></div>
+<div class="app-version"><span id="version-label">Versão 7.3</span><button id="refresh-app" class="refresh-app" type="button">↻ Atualizar</button></div>
 </header>
 <main class="wrap">
 <div class="topline"><div><h2>Seus aniversários</h2><p>Um jeitinho carinhoso de não esquecer datas especiais.</p></div><button class="primary" id="add-open">＋ Cadastrar aniversário</button></div>
@@ -106,6 +106,7 @@
 <div class="field"><label for="card-sign">Assinatura — quem está enviando</label><input id="card-sign" maxlength="50" placeholder="Digite seu nome"></div>
 <div class="field"><label for="card-date">Data</label><input id="card-date" type="date"></div>
 <div id="card-preview" class="card-preview"></div>
+<p class="note" style="text-align:center;margin-top:-5px">Toque no carimbo e arraste para qualquer lugar do cartão.</p>
 <div class="form-actions"><button class="primary" id="save-jpeg">Salvar imagem JPEG</button><button class="secondary" id="share-jpeg">Compartilhar</button></div>
 <p class="note">Os campos são orientações do aplicativo. A palavra “Para” não aparece na arte do cartão.</p>
 </div></div>
@@ -325,6 +326,31 @@ function getMessageLayout(text,ctx){
  }
  return null;
 }
+const STAMP_POSITION_KEY='mimo-card-stamp-positions-v1';
+const DEFAULT_STAMP_POSITION={x:.87,y:.76};
+function readStampPositions(){try{const v=JSON.parse(localStorage.getItem(STAMP_POSITION_KEY)||'{}');return v&&typeof v==='object'?v:{}}catch{return{}}}
+let stampPositions=readStampPositions();
+function getStampPosition(){const p=stampPositions[String(activeCard)];return p&&Number.isFinite(p.x)&&Number.isFinite(p.y)?p:{...DEFAULT_STAMP_POSITION}}
+function saveStampPosition(p){stampPositions[String(activeCard)]=p;try{localStorage.setItem(STAMP_POSITION_KEY,JSON.stringify(stampPositions))}catch{}}
+function setStampPreviewPosition(stamp,p){stamp.style.left=(p.x*100)+'%';stamp.style.top=(p.y*100)+'%'}
+function enableStampDragging(stamp,preview){
+ let dragging=false,offsetX=0,offsetY=0;
+ stamp.addEventListener('pointerdown',e=>{
+  e.preventDefault();const sr=stamp.getBoundingClientRect();offsetX=e.clientX-(sr.left+sr.width/2);offsetY=e.clientY-(sr.top+sr.height/2);dragging=true;stamp.classList.add('dragging');
+  try{stamp.setPointerCapture(e.pointerId)}catch{}
+ });
+ function move(e){
+  if(!dragging)return;
+  const r=preview.getBoundingClientRect();
+  const halfX=(stamp.offsetWidth/2)/r.width,halfY=(stamp.offsetHeight/2)/r.height;
+  const x=Math.max(halfX,Math.min(1-halfX,(e.clientX-offsetX-r.left)/r.width));
+  const y=Math.max(halfY,Math.min(1-halfY,(e.clientY-offsetY-r.top)/r.height));
+  const p={x,y};setStampPreviewPosition(stamp,p);stamp.dataset.x=String(x);stamp.dataset.y=String(y);
+ }
+ stamp.addEventListener('pointermove',move);
+ function finish(){if(!dragging)return;dragging=false;stamp.classList.remove('dragging');const x=Number(stamp.dataset.x),y=Number(stamp.dataset.y);if(Number.isFinite(x)&&Number.isFinite(y))saveStampPosition({x,y})}
+ stamp.addEventListener('pointerup',finish);stamp.addEventListener('pointercancel',finish);stamp.addEventListener('lostpointercapture',finish);
+}
 function updateCardPreview(){
  const preview=$('card-preview');preview.style.backgroundImage=`url("${getCardArt(activeCard)}")`;preview.innerHTML='';
  const to=document.createElement('div');to.className='preview-to';to.textContent=$('card-to').value.trim();
@@ -332,7 +358,7 @@ function updateCardPreview(){
  const sign=document.createElement('div');sign.className='preview-sign';sign.textContent=$('card-sign').value.trim();
  const date=document.createElement('div');date.className='preview-date';date.textContent=dateForCard();
  preview.append(to,msg,sign,date);
- const stamp=document.createElement('img');stamp.className='preview-stamp';stamp.src=STAMP_DATA;stamp.alt='';preview.append(stamp);
+ const stamp=document.createElement('img');stamp.className='preview-stamp';stamp.src=STAMP_DATA;stamp.alt='Carimbo Mimo Cards — toque e arraste para mover';stamp.draggable=false;const stampPosition=getStampPosition();setStampPreviewPosition(stamp,stampPosition);stamp.dataset.x=String(stampPosition.x);stamp.dataset.y=String(stampPosition.y);preview.append(stamp);enableStampDragging(stamp,preview);
  const measure=document.createElement('canvas').getContext('2d');
  const current=$('card-message').value;
  const layout=getMessageLayout(current,measure);
@@ -395,7 +421,8 @@ async function makeJpeg(){
  if(sign){ctx.font='700 38px "Courier New",monospace';ctx.fillText(sign,500,1010,maxWidth)}
  if(date){ctx.font='700 35px "Courier New",monospace';ctx.fillText(date,500,1110,maxWidth)}
  const stampImg=await loadCardImage(STAMP_DATA);
- ctx.save();ctx.globalAlpha=.78;ctx.filter='none';ctx.drawImage(stampImg,820,900,100,100);ctx.restore();
+ const stampPosition=getStampPosition();
+ ctx.save();ctx.globalAlpha=.82;ctx.filter='none';ctx.drawImage(stampImg,stampPosition.x*canvas.width-50,stampPosition.y*canvas.height-50,100,100);ctx.restore();
  ctx.shadowBlur=0;
  return new Promise((resolve,reject)=>canvas.toBlob(b=>b?resolve(b):reject(Error('jpeg')),'image/jpeg',.94));
 }
