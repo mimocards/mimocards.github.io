@@ -41,7 +41,7 @@
 <header>
 <img class="brand-icon" src="apple-touch-icon.png" alt="Cãozinho Mimo Cards" onerror="this.style.display='none'">
 <div class="brand"><h1>Mimo Cards Birthday</h1><p>Carinho lembrado o ano inteiro ♡</p></div>
-<div class="app-version"><span id="version-label">Versão 7.3</span><button id="refresh-app" class="refresh-app" type="button">↻ Atualizar</button></div>
+<div class="app-version"><span id="version-label">Versão 7.6</span><button id="refresh-app" class="refresh-app" type="button">↻ Atualizar</button></div>
 </header>
 <main class="wrap">
 <div class="topline"><div><h2>Seus aniversários</h2><p>Um jeitinho carinhoso de não esquecer datas especiais.</p></div><button class="primary" id="add-open">＋ Cadastrar aniversário</button></div>
@@ -64,7 +64,7 @@
 <section class="panel" id="panel-cards"><div class="surface">
 <div class="calendar-head"><h3>Cartões de aniversário</h3></div>
 <p class="note">Escolha uma coleção e depois um modelo para personalizar e compartilhar seu cartão.</p>
-<div class="collection-tabs" id="collection-tabs"><button class="active" data-collection="minimalista">Minimalista</button><button data-collection="floral">Floral</button><button data-collection="alegre">Alegre e Festivo</button></div>
+<div class="collection-tabs" id="collection-tabs"><button class="active" data-collection="minimalista">Minimalista</button><button data-collection="floral">Floral</button><button data-collection="alegre">Alegre e Festivo</button><button data-collection="artesanal">Artesanal</button></div>
 <div class="cards" id="card-choices"></div>
 </div></section>
 <section class="surface" style="margin-top:18px">
@@ -77,7 +77,7 @@
 <input class="hidden" type="file" id="backup-file" accept=".json,application/json">
 </div>
 </section>
-<p class="footer">Mimo Cards Birthday · gratuito · sem cadastro · seus dados ficam no aparelho<strong>Versão 7.2</strong></p>
+<p class="footer">Mimo Cards Birthday · gratuito · sem cadastro · seus dados ficam no aparelho<strong>Versão 7.6</strong></p>
 </main>
 
 <div class="modal" id="birthday-modal">
@@ -236,6 +236,18 @@ CARD_ARTS[21]="assets/cartoes/alegre_04_preto_bege_dourado.jpg";
 CARD_ARTS[22]="assets/cartoes/alegre_05_azul_cinza_dourado.jpg";
 CARD_ARTS[23]="assets/cartoes/alegre_06_verde_oliva_bege.jpg";
 CARD_ARTS[26]="assets/cartoes/alegre_09_baloes_dourados_sobrios.jpg";
+CARD_ARTS[30]="assets/cartoes/artesanal_01_floral_xadrez.jpg";
+CARD_ARTS[31]="assets/cartoes/artesanal_02_viagem_vintage.jpg";
+CARD_ARTS[32]="assets/cartoes/artesanal_03_lavanda_renda.jpg";
+CARD_ARTS[33]="assets/cartoes/artesanal_04_suculenta_kraft.jpg";
+CARD_ARTS[34]="assets/cartoes/artesanal_05_girassois_jarro.jpg";
+CARD_ARTS[35]="assets/cartoes/artesanal_06_baloes_tecido.jpg";
+CARD_ARTS[36]="assets/cartoes/artesanal_07_colagem_costurada.jpg";
+CARD_ARTS[37]="assets/cartoes/artesanal_08_montanhas_trilha.jpg";
+CARD_ARTS[38]="assets/cartoes/artesanal_09_cavalo_campo.jpg";
+CARD_ARTS[39]="assets/cartoes/artesanal_10_recortes_festivos.jpg";
+CARD_ARTS[40]="assets/cartoes/artesanal_11_bordado_feltro.jpg";
+
 
 
 const cardModels=[
@@ -257,7 +269,18 @@ const cardModels=[
  {id:21,collection:'alegre',name:'Preto, bege e dourado'},
  {id:22,collection:'alegre',name:'Azul, cinza e dourado'},
  {id:23,collection:'alegre',name:'Verde-oliva e bege'},
- {id:26,collection:'alegre',name:'Balões e dourado'}
+ {id:26,collection:'alegre',name:'Balões e dourado'},
+ {id:30,collection:'artesanal',name:'Flores e xadrez rosa'},
+ {id:31,collection:'artesanal',name:'Viagem vintage'},
+ {id:32,collection:'artesanal',name:'Lavanda e renda'},
+ {id:33,collection:'artesanal',name:'Suculenta e kraft'},
+ {id:34,collection:'artesanal',name:'Girassóis no jarro'},
+ {id:35,collection:'artesanal',name:'Balões de tecido'},
+ {id:36,collection:'artesanal',name:'Colagem costurada'},
+ {id:37,collection:'artesanal',name:'Montanhas e trilha'},
+ {id:38,collection:'artesanal',name:'Cavalo no campo'},
+ {id:39,collection:'artesanal',name:'Recortes festivos'},
+ {id:40,collection:'artesanal',name:'Bordado e feltro'}
 ];
 const CUSTOM_ARTS_KEY='mimo-custom-card-arts-v1';
 function readCustomArts(){try{const a=JSON.parse(localStorage.getItem(CUSTOM_ARTS_KEY)||'[]');return Array.isArray(a)?a:[]}catch{return[]}}
