@@ -23,6 +23,10 @@
 .preview-message{left:13%;width:74%;top:37%;height:33%;display:flex;align-items:center;justify-content:center;font-size:13px;line-height:1.34;white-space:pre-wrap;word-break:normal}
 .preview-sign{top:78%;font-size:20px;line-height:1.35}
 .preview-date{top:89%;font-size:19px;line-height:1.3}
+.card-preview.card-layout-bordado .preview-to{top:16%}
+.card-preview.card-layout-bordado .preview-message{top:29%;height:30%}
+.card-preview.card-layout-bordado .preview-sign{top:72%}
+.card-preview.card-layout-bordado .preview-date{top:84%}
 .preview-stamp{position:absolute;width:44px;height:44px;left:87%;top:76%;transform:translate(-50%,-50%);object-fit:contain;opacity:.82;pointer-events:auto;touch-action:none;cursor:grab;user-select:none;-webkit-user-drag:none;filter:none;background:transparent;border:0;box-shadow:none}.preview-stamp.dragging{cursor:grabbing;filter:drop-shadow(0 0 3px rgba(0,0,0,.35))}.char-count{font-size:12px;color:var(--muted);text-align:right;margin-top:5px}.card-dialog{max-width:620px}
 @media(max-width:650px){.collection-tabs button{font-size:12px}.card-preview{width:min(100%,300px)}}
 @media(max-width:650px){header{padding:17px 16px 10px}.brand h1{font-size:18px}.brand p{font-size:11px}.brand-icon{width:48px;height:48px}.refresh-app{padding:7px 9px;font-size:11px}.wrap{padding:6px 15px 30px}.topline{align-items:flex-start;flex-direction:column}.topline h2{font-size:24px}.topline .primary{width:100%}.form-grid{grid-template-columns:1fr 1fr}.field.name{grid-column:1/-1}.year-grid{grid-template-columns:repeat(2,1fr)}.cards{grid-template-columns:repeat(2,1fr)}.day{min-height:53px;padding:6px 2px}.surface{padding:13px}.tabs button{font-size:12px;padding:10px 4px}}
@@ -41,7 +45,7 @@
 <header>
 <img class="brand-icon" src="apple-touch-icon.png" alt="Cãozinho Mimo Cards" onerror="this.style.display='none'">
 <div class="brand"><h1>Mimo Cards Birthday</h1><p>Carinho lembrado o ano inteiro ♡</p></div>
-<div class="app-version"><span id="version-label">Versão 7.6</span><button id="refresh-app" class="refresh-app" type="button">↻ Atualizar</button></div>
+<div class="app-version"><span id="version-label">Versão 7.7</span><button id="refresh-app" class="refresh-app" type="button">↻ Atualizar</button></div>
 </header>
 <main class="wrap">
 <div class="topline"><div><h2>Seus aniversários</h2><p>Um jeitinho carinhoso de não esquecer datas especiais.</p></div><button class="primary" id="add-open">＋ Cadastrar aniversário</button></div>
@@ -77,7 +81,7 @@
 <input class="hidden" type="file" id="backup-file" accept=".json,application/json">
 </div>
 </section>
-<p class="footer">Mimo Cards Birthday · gratuito · sem cadastro · seus dados ficam no aparelho<strong>Versão 7.6</strong></p>
+<p class="footer">Mimo Cards Birthday · gratuito · sem cadastro · seus dados ficam no aparelho<strong>Versão 7.7</strong></p>
 </main>
 
 <div class="modal" id="birthday-modal">
@@ -375,7 +379,7 @@ function enableStampDragging(stamp,preview){
  stamp.addEventListener('pointerup',finish);stamp.addEventListener('pointercancel',finish);stamp.addEventListener('lostpointercapture',finish);
 }
 function updateCardPreview(){
- const preview=$('card-preview');preview.style.backgroundImage=`url("${getCardArt(activeCard)}")`;preview.innerHTML='';
+ const preview=$('card-preview');preview.classList.toggle('card-layout-bordado',Number(activeCard)===40);preview.style.backgroundImage=`url("${getCardArt(activeCard)}")`;preview.innerHTML='';
  const to=document.createElement('div');to.className='preview-to';to.textContent=$('card-to').value.trim();
  const msg=document.createElement('div');msg.className='preview-message';
  const sign=document.createElement('div');sign.className='preview-sign';sign.textContent=$('card-sign').value.trim();
@@ -437,12 +441,12 @@ async function makeJpeg(){
  if(!layout)throw new Error('Mensagem muito longa para este modelo.');
  const {font,lines,lineHeight}=layout;
  ctx.fillStyle='#17130f';ctx.shadowColor='rgba(255,250,240,.18)';ctx.shadowBlur=0;
- if(to){ctx.font='700 43px "Courier New",monospace';ctx.fillText(to,500,265,maxWidth)}
+ if(to){ctx.font='700 43px "Courier New",monospace';ctx.fillText(to,500,Number(activeCard)===40?225:265,maxWidth)}
  ctx.font=`700 ${font}px "Courier New",monospace`;
- const messageHeight=lines.length*lineHeight;let y=625-messageHeight/2;
+ const messageHeight=lines.length*lineHeight;let y=(Number(activeCard)===40?550:625)-messageHeight/2;
  lines.forEach(line=>{ctx.fillText(line,500,y+lineHeight/2,maxWidth);y+=lineHeight});
- if(sign){ctx.font='700 38px "Courier New",monospace';ctx.fillText(sign,500,1010,maxWidth)}
- if(date){ctx.font='700 35px "Courier New",monospace';ctx.fillText(date,500,1110,maxWidth)}
+ if(sign){ctx.font='700 38px "Courier New",monospace';ctx.fillText(sign,500,Number(activeCard)===40?900:1010,maxWidth)}
+ if(date){ctx.font='700 35px "Courier New",monospace';ctx.fillText(date,500,Number(activeCard)===40?1050:1110,maxWidth)}
  const stampImg=await loadCardImage(STAMP_DATA);
  const stampPosition=getStampPosition();
  ctx.save();ctx.globalAlpha=.82;ctx.filter='none';ctx.drawImage(stampImg,stampPosition.x*canvas.width-50,stampPosition.y*canvas.height-50,100,100);ctx.restore();
