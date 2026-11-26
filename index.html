@@ -18,15 +18,9 @@
 .collection-tabs{display:flex;gap:8px;margin:18px 0;flex-wrap:wrap}.collection-tabs button{flex:1;min-width:100px;border:1px solid var(--line);background:#fff;border-radius:12px;padding:11px 8px;color:var(--ink);font-weight:750}.collection-tabs button.active{background:#e7eee7;border-color:#9eb4a3;color:#355b45}
 .card-choice{overflow:hidden}.card-choice .art-thumb{background-size:100% 100%;background-position:center;background-repeat:no-repeat;width:100%;aspect-ratio:4/5;border-radius:11px;background-size:cover;background-position:center;display:block}
 .card-preview{width:min(100%,330px);aspect-ratio:4/5;margin:14px auto;border-radius:8px;background-size:100% 100%;background-position:center center;background-repeat:no-repeat;position:relative;overflow:hidden;box-shadow:0 4px 18px #0002;color:#211b16;text-align:center;padding:0;display:block}
-.preview-to,.preview-message,.preview-sign,.preview-date{position:absolute;left:10%;width:80%;margin:0;color:#17130f;font-family:"Courier New",monospace;font-weight:700;text-shadow:0 0 .5px currentColor;overflow-wrap:anywhere}
-.preview-to{top:11%;font-size:22px;line-height:1.35}
-.preview-message{left:13%;width:74%;top:37%;height:33%;display:flex;align-items:center;justify-content:center;font-size:13px;line-height:1.34;white-space:pre-wrap;word-break:normal}
-.preview-sign{top:78%;font-size:20px;line-height:1.35}
+.preview-message,.preview-date{position:absolute;left:10%;width:80%;margin:0;color:#17130f;font-family:"Courier New",monospace;font-weight:700;text-shadow:0 0 .5px currentColor;overflow-wrap:anywhere}
+.preview-message{left:13%;width:74%;top:31%;height:38%;display:flex;align-items:center;justify-content:center;font-size:13px;line-height:1.34;white-space:pre-wrap;word-break:normal}
 .preview-date{top:89%;font-size:19px;line-height:1.3}
-.card-preview.card-layout-bordado .preview-to{top:16%}
-.card-preview.card-layout-bordado .preview-message{top:29%;height:30%}
-.card-preview.card-layout-bordado .preview-sign{top:72%}
-.card-preview.card-layout-bordado .preview-date{top:84%}
 .preview-stamp{position:absolute;width:44px;height:44px;left:87%;top:76%;transform:translate(-50%,-50%);object-fit:contain;opacity:.82;pointer-events:auto;touch-action:none;cursor:grab;user-select:none;-webkit-user-drag:none;filter:none;background:transparent;border:0;box-shadow:none}.preview-stamp.dragging{cursor:grabbing;filter:drop-shadow(0 0 3px rgba(0,0,0,.35))}.char-count{font-size:12px;color:var(--muted);text-align:right;margin-top:5px}.card-dialog{max-width:620px}
 @media(max-width:650px){.collection-tabs button{font-size:12px}.card-preview{width:min(100%,300px)}}
 @media(max-width:650px){header{padding:17px 16px 10px}.brand h1{font-size:18px}.brand p{font-size:11px}.brand-icon{width:48px;height:48px}.refresh-app{padding:7px 9px;font-size:11px}.wrap{padding:6px 15px 30px}.topline{align-items:flex-start;flex-direction:column}.topline h2{font-size:24px}.topline .primary{width:100%}.form-grid{grid-template-columns:1fr 1fr}.field.name{grid-column:1/-1}.year-grid{grid-template-columns:repeat(2,1fr)}.cards{grid-template-columns:repeat(2,1fr)}.day{min-height:53px;padding:6px 2px}.surface{padding:13px}.tabs button{font-size:12px;padding:10px 4px}}
@@ -45,7 +39,7 @@
 <header>
 <img class="brand-icon" src="apple-touch-icon.png" alt="Cãozinho Mimo Cards" onerror="this.style.display='none'">
 <div class="brand"><h1>Mimo Cards Birthday</h1><p>Carinho lembrado o ano inteiro ♡</p></div>
-<div class="app-version"><span id="version-label">Versão 7.7</span><button id="refresh-app" class="refresh-app" type="button">↻ Atualizar</button></div>
+<div class="app-version"><span id="version-label">Versão 7.8</span><button id="refresh-app" class="refresh-app" type="button">↻ Atualizar</button></div>
 </header>
 <main class="wrap">
 <div class="topline"><div><h2>Seus aniversários</h2><p>Um jeitinho carinhoso de não esquecer datas especiais.</p></div><button class="primary" id="add-open">＋ Cadastrar aniversário</button></div>
@@ -81,7 +75,7 @@
 <input class="hidden" type="file" id="backup-file" accept=".json,application/json">
 </div>
 </section>
-<p class="footer">Mimo Cards Birthday · gratuito · sem cadastro · seus dados ficam no aparelho<strong>Versão 7.7</strong></p>
+<p class="footer">Mimo Cards Birthday · gratuito · sem cadastro · seus dados ficam no aparelho<strong>Versão 7.8</strong></p>
 </main>
 
 <div class="modal" id="birthday-modal">
@@ -105,14 +99,12 @@
 <div class="modal" id="month-modal"><div class="dialog"><div class="dialog-head"><h3 id="month-modal-title">Aniversários do mês</h3><button class="close" data-close="month-modal">×</button></div><div id="month-modal-list"></div></div></div>
 <div class="modal" id="card-modal"><div class="dialog card-dialog">
 <div class="dialog-head"><h3>Personalizar cartão</h3><button class="close" data-close="card-modal">×</button></div>
-<div class="field"><label for="card-to">Nome de quem vai receber</label><input id="card-to" maxlength="50" placeholder="Digite o nome do destinatário"></div>
 <div class="field"><label for="card-message">Mensagem personalizada</label><textarea id="card-message" maxlength="300" rows="5" placeholder="Escreva sua mensagem...">Que seu novo ciclo seja cheio de saúde, alegria e momentos especiais. Feliz aniversário!</textarea><div class="char-count" id="char-count">300 caracteres restantes</div></div>
-<div class="field"><label for="card-sign">Assinatura — quem está enviando</label><input id="card-sign" maxlength="50" placeholder="Digite seu nome"></div>
 <div class="field"><label for="card-date">Data</label><input id="card-date" type="date"></div>
 <div id="card-preview" class="card-preview"></div>
 <p class="note" style="text-align:center;margin-top:-5px">Toque no carimbo e arraste para qualquer lugar do cartão.</p>
 <div class="form-actions"><button class="primary" id="save-jpeg">Salvar imagem JPEG</button><button class="secondary" id="share-jpeg">Compartilhar</button></div>
-<p class="note">Os campos são orientações do aplicativo. A palavra “Para” não aparece na arte do cartão.</p>
+<p class="note">Personalize a mensagem (até 300 caracteres) e escolha a data do cartão.</p>
 </div></div>
 <div class="toast" id="toast"></div>
 <script>
@@ -309,7 +301,6 @@ document.querySelectorAll('[data-collection]').forEach(btn=>btn.onclick=()=>{
 });
 function openCard(id){
  activeCard=id;
- $('card-to').value='';$('card-sign').value='';
  $('card-message').value='Que seu novo ciclo seja cheio de saúde, alegria e momentos especiais. Feliz aniversário!';
  const now=new Date();$('card-date').value=`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
  updateCardPreview();$('card-modal').classList.add('open');
@@ -379,12 +370,10 @@ function enableStampDragging(stamp,preview){
  stamp.addEventListener('pointerup',finish);stamp.addEventListener('pointercancel',finish);stamp.addEventListener('lostpointercapture',finish);
 }
 function updateCardPreview(){
- const preview=$('card-preview');preview.classList.toggle('card-layout-bordado',Number(activeCard)===40);preview.style.backgroundImage=`url("${getCardArt(activeCard)}")`;preview.innerHTML='';
- const to=document.createElement('div');to.className='preview-to';to.textContent=$('card-to').value.trim();
+ const preview=$('card-preview');preview.classList.remove('card-layout-bordado');preview.style.backgroundImage=`url("${getCardArt(activeCard)}")`;preview.innerHTML='';
  const msg=document.createElement('div');msg.className='preview-message';
- const sign=document.createElement('div');sign.className='preview-sign';sign.textContent=$('card-sign').value.trim();
  const date=document.createElement('div');date.className='preview-date';date.textContent=dateForCard();
- preview.append(to,msg,sign,date);
+ preview.append(msg,date);
  const stamp=document.createElement('img');stamp.className='preview-stamp';stamp.src=STAMP_DATA;stamp.alt='Carimbo Mimo Cards — toque e arraste para mover';stamp.draggable=false;const stampPosition=getStampPosition();setStampPreviewPosition(stamp,stampPosition);stamp.dataset.x=String(stampPosition.x);stamp.dataset.y=String(stampPosition.y);preview.append(stamp);enableStampDragging(stamp,preview);
  const measure=document.createElement('canvas').getContext('2d');
  const current=$('card-message').value;
@@ -398,8 +387,6 @@ function updateCardPreview(){
   msg.style.fontSize='9.9px';
   msg.style.lineHeight='1.34';
  }
- to.style.display=to.textContent?'block':'none';
- sign.style.display=sign.textContent?'block':'none';
  date.style.display=date.textContent?'block':'none';
  // Count only characters that pass the exact same line-wrap/font/height rules as JPEG export.
  let remaining=0;
@@ -410,7 +397,7 @@ function updateCardPreview(){
  $('char-count').textContent=`${remaining} caracteres ainda cabem neste cartão (limite de 300)`;
  $('card-message').dataset.remaining=String(remaining);
 }
-['card-to','card-message','card-sign','card-date'].forEach(id=>$(id).addEventListener('input',updateCardPreview));
+['card-message','card-date'].forEach(id=>$(id).addEventListener('input',updateCardPreview));
 $('card-message').addEventListener('beforeinput',e=>{
  if(!e.inputType||!e.inputType.startsWith('insert'))return;
  const el=e.target, start=el.selectionStart??el.value.length, end=el.selectionEnd??start;
@@ -436,17 +423,15 @@ async function makeJpeg(){
  const canvas=document.createElement('canvas');canvas.width=1000;canvas.height=1250;
  const ctx=canvas.getContext('2d');const img=await loadCardImage(getCardArt(activeCard));
  ctx.drawImage(img,0,0,1000,1250);ctx.textAlign='center';ctx.textBaseline='middle';
- const to=$('card-to').value.trim(),msg=$('card-message').value.trim(),sign=$('card-sign').value.trim(),date=dateForCard();
+ const msg=$('card-message').value.trim(),date=dateForCard();
  const layout=getMessageLayout(msg,ctx);
  if(!layout)throw new Error('Mensagem muito longa para este modelo.');
  const {font,lines,lineHeight}=layout;
  ctx.fillStyle='#17130f';ctx.shadowColor='rgba(255,250,240,.18)';ctx.shadowBlur=0;
- if(to){ctx.font='700 43px "Courier New",monospace';ctx.fillText(to,500,Number(activeCard)===40?225:265,maxWidth)}
  ctx.font=`700 ${font}px "Courier New",monospace`;
- const messageHeight=lines.length*lineHeight;let y=(Number(activeCard)===40?550:625)-messageHeight/2;
+ const messageHeight=lines.length*lineHeight;let y=625-messageHeight/2;
  lines.forEach(line=>{ctx.fillText(line,500,y+lineHeight/2,maxWidth);y+=lineHeight});
- if(sign){ctx.font='700 38px "Courier New",monospace';ctx.fillText(sign,500,Number(activeCard)===40?900:1010,maxWidth)}
- if(date){ctx.font='700 35px "Courier New",monospace';ctx.fillText(date,500,Number(activeCard)===40?1050:1110,maxWidth)}
+ if(date){ctx.font='700 35px "Courier New",monospace';ctx.fillText(date,500,1110,maxWidth)}
  const stampImg=await loadCardImage(STAMP_DATA);
  const stampPosition=getStampPosition();
  ctx.save();ctx.globalAlpha=.82;ctx.filter='none';ctx.drawImage(stampImg,stampPosition.x*canvas.width-50,stampPosition.y*canvas.height-50,100,100);ctx.restore();
